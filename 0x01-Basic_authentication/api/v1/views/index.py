@@ -3,6 +3,8 @@
 """
 from flask import jsonify, abort
 from api.v1.views import app_views
+from models.user import User
+
 
 # Define the route for GET /api/v1/unauthorized
 @app_views.route('/unauthorized', methods=['GET'])
@@ -26,7 +28,6 @@ def stats() -> str:
     Return:
       - the number of each objects
     """
-    from models.user import User
     stats = {}
     stats['users'] = User.count()
     return jsonify(stats)
