@@ -6,9 +6,6 @@ from api.v1.views import app_views
 from flask import Blueprint, abort
 
 
-# Create a Blueprint object
-app_views = Blueprint('app_views', __name__)
-
 # Define the route for GET /api/v1/unauthorized
 @app_views.route('/unauthorized', methods=['GET'])
 def unauthorized():
