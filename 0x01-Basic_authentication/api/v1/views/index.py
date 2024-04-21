@@ -3,6 +3,17 @@
 """
 from flask import jsonify, abort
 from api.v1.views import app_views
+from flask import Blueprint, abort
+
+
+# Create a Blueprint object
+app_views = Blueprint('app_views', __name__)
+
+# Define the route for GET /api/v1/unauthorized
+@app_views.route('/unauthorized', methods=['GET'])
+def unauthorized():
+    # Raise a 401 error
+    abort(401)
 
 
 @app_views.route('/status', methods=['GET'], strict_slashes=False)
