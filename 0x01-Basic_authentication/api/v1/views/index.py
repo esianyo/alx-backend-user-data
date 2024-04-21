@@ -3,14 +3,20 @@
 """
 from flask import jsonify, abort
 from api.v1.views import app_views
-from models.user import User
 
 
-# Define the route for GET /api/v1/unauthorized
-@app_views.route('/unauthorized', methods=['GET'])
-def unauthorized():
-    # Raise a 401 error
-    abort(401)
+# unauthorized access
+@app_views.route('/unauthorized', methods=['GET'], strict_slashes=False)
+def unauthorized() -> str:
+    """endpoint for unauthorized access"""
+    abort(401, description='Unauthorized')
+
+
+# forbidden
+@app_views.route('/forbidden', methods=['GET'], strict_slashes=False)
+def forbidden() -> str:
+    """endpoint for forbidden error"""
+    abort(403, description='Forbidden')
 
 
 @app_views.route('/status', methods=['GET'], strict_slashes=False)
@@ -28,6 +34,7 @@ def stats() -> str:
     Return:
       - the number of each objects
     """
+    from models.user import User
     stats = {}
     stats['users'] = User.count()
     return jsonify(stats)
