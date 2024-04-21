@@ -3,7 +3,6 @@
 """
 from flask import jsonify, abort
 from api.v1.views import app_views
-from flask import Blueprint, abort
 
 
 @app_views.route('/status', methods=['GET'], strict_slashes=False)
@@ -25,8 +24,3 @@ def stats() -> str:
     stats = {}
     stats['users'] = User.count()
     return jsonify(stats)
-
-
-@app_views.route('/unauthorized')
-def unauthorized():
-    abort(401)
