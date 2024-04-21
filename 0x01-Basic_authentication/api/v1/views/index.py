@@ -27,8 +27,6 @@ def stats() -> str:
     return jsonify(stats)
 
 
-app_views = Blueprint('app_views', __name__)
-
 @app_views.route('/unauthorized')
 def unauthorized():
     abort(401)
